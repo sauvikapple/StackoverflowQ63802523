@@ -40,7 +40,7 @@ extension TableViewCell: UICollectionViewDataSource {
         IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.reuseIdentifier, for: indexPath) as! CollectionViewCell
         cell.indexPathLabel.text = "(\(indexPath.section), \(indexPath.item))"
-
+        // TODO: more configuration to do?
         return cell
     }
 }
