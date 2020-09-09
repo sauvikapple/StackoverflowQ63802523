@@ -43,8 +43,6 @@ extension TableViewCell: UICollectionViewDataSource {
 
         return cell
     }
-
-
 }
 // MARK: - UICollectionViewDelegate
 extension TableViewCell: UICollectionViewDelegate {
