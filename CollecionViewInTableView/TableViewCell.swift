@@ -7,16 +7,17 @@
 
 import UIKit
 
-
+// MARK: - Collection View Cell Class
 class CollectionViewCell: UICollectionViewCell {
     static let reuseIdentifier: String  = "CollectionViewCell"
     @IBOutlet weak var indexPathLabel: UILabel!
-    
 }
 
+// MARK: - TableViewCellDelegate
 protocol TableViewCellDelegate: AnyObject {
     func tableViewCell(_ : TableViewCell, atIndexPath tableCellIndexPath: IndexPath, didSelectCollectionItem item: CollectionViewCell, atIndexPath collectionCellIndexPath: IndexPath)
 }
+// MARK: - TableViewCell
 class TableViewCell: UITableViewCell {
 
     static let reuseIdentifier: String  = "TableViewCell"
@@ -24,19 +25,8 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var cellIndexLabel: UILabel!
     var indexPath: IndexPath?
     weak var delegate: TableViewCellDelegate?
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
 }
-
+// MARK: - UICollectionViewDataSource
 extension TableViewCell: UICollectionViewDataSource {
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -56,12 +46,14 @@ extension TableViewCell: UICollectionViewDataSource {
 
 
 }
+// MARK: - UICollectionViewDelegate
 extension TableViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let tableViewCellIndexPath = self.indexPath,
             let cell = collectionView.cellForItem(at: indexPath) as? CollectionViewCell else {
             return
         }
+        // Message delegate(CollectionViewInTableViewVC) about selection event from collection view cell
         delegate?.tableViewCell(self,
                                 atIndexPath: tableViewCellIndexPath,
                                 didSelectCollectionItem: cell,
